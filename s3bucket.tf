@@ -6,18 +6,14 @@ resource "random_string" "suffix" {
 }
 
 # Resource Block: AWS S3 Bucket
-resource "aws_s3_bucket" "demo_bucket" {
-  bucket = "devopsdemo-${random_string.suffix.result}"
+resource "aws_s3_bucket" "devops_training_bucket" {
+  bucket = "ds-${var.customer_prefix}-${random_string.suffix.result}"
 
   tags = {
-    Name        = "DevOps Demo Bucket"
+    Name        = "DevOps-Training-Bucket"
     Environment = "Dev"
-    # Owner = "Kalyan Reddy"
-    # Organization = "StackSimplify"
+    Owner = "Raheel Aslam"
+    Organization = "DataStack"
+    localization = true
   }
-}
-
-
-
-
-
+} 
