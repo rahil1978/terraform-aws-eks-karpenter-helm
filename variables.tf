@@ -4,6 +4,12 @@ variable "aws_region" {
   default     = "ap-southeast-2"
 }
 
+variable "environment_name" {
+  description = "Environment name used in resource names and tags"
+  type        = string
+  default     = "dev"
+}
+
 variable "vpc_cidr" {
   description = "CIDR block for the VPC"
   type        = string
@@ -31,11 +37,6 @@ variable "customer" {
   default     = "folio"
 }
 
-variable "environment_name" {
-  description = "Environment name used in resource names and tags"
-  type        = string
-  default     = "dev"
-}
 
 variable "customer_prefix" {
   description = "Customerprefix used in resource names and tags"
