@@ -1,4 +1,4 @@
-# Terraform Block
+# Terraform configuration settings
 terraform {
   required_version = ">= 1.0.0"
   required_providers {
@@ -12,7 +12,7 @@ terraform {
     } 
   }
   
-  #Remote back 
+  # Remote backend configuration
   backend "s3" {
       bucket = "tfstate-dev-ap-southeast-2-iv3jwo"
       key = "vpc/dev/terraform.tfstate"
@@ -22,7 +22,7 @@ terraform {
  }
 }
 
-# Provider Block
+# AWS provider configuration
 provider "aws" {
   region = var.aws_region
   profile = "training"

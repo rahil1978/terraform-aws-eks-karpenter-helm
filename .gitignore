@@ -2,7 +2,7 @@
 PLAN.md
 
 #Temp folder should not be committed
-projects/eks/
+#projects/eks/
 shared/
 scripts/
 pipeline/

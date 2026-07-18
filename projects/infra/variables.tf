@@ -1,4 +1,4 @@
-// Customer specific inform
+// Customer-specific variables and defaults
 variable "customer" {
   description = "Customer name used in resource names and tags"
   type        = string

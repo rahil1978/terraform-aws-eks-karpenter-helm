@@ -5,7 +5,7 @@ resource "aws_vpc" "main" {
   enable_dns_support   = true
   tags = merge(var.tags, { Name = "${local.customer_prefix}-vpc" })
   lifecycle {
-    prevent_destroy = false #should be true
+    prevent_destroy = false # should be true to avoid accidental destruction
   }
 }
 
@@ -52,7 +52,7 @@ resource "aws_nat_gateway" "nat" {
   depends_on = [aws_internet_gateway.igw]
 }
 
-# Resource-7: Public Route Table
+# Resource-7: Public route table for internet-bound traffic
 resource "aws_route_table" "public_rt" {
   vpc_id = aws_vpc.main.id
   route {
@@ -62,14 +62,14 @@ resource "aws_route_table" "public_rt" {
   tags = merge(var.tags, { Name = "${local.customer_prefix}-public-rt" })
 }
 
-# Resource-8: Public Route Table Associate to Public Subnet
+# Resource-8: Associate the public route table with public subnets
 resource "aws_route_table_association" "public_rt_association" {
   for_each = aws_subnet.public
   subnet_id      = each.value.id
   route_table_id = aws_route_table.public_rt.id
 }
 
-# Resource-9: Private Route Table
+# Resource-9: Private route table for NAT-based internet access
 resource "aws_route_table" "private_rt" {
   vpc_id = aws_vpc.main.id
   route {
@@ -79,7 +79,7 @@ resource "aws_route_table" "private_rt" {
   tags = merge(var.tags, { Name = "${local.customer_prefix}-private-rt" })
 }
 
-# Resource-10: Private Route Table Association to Private Subnet
+# Resource-10: Associate the private route table with private subnets
 resource "aws_route_table_association" "private_rt_association" {
   for_each = aws_subnet.private
   subnet_id      = each.value.id

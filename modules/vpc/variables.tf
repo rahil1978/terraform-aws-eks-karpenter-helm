@@ -1,10 +1,11 @@
-// Customer specific inform
+# Customer-specific metadata used in resource names and tags
 variable "customer" {
   description = "Customer name used in resource names and tags"
   type        = string
   default     = "folio"
 }
 
+# Environment label used in resource names and tags
 variable "environment_name" {
   description = "Environment name used in resource names and tags"
   type        = string
@@ -17,6 +18,7 @@ variable "vpc_cidr" {
   default     = "10.0.0.0/16"
 }
 
+# Common tags applied to all VPC resources
 variable "tags" {
   description = "Global tags to apply to all resources"
   type        = map(string)
@@ -26,7 +28,7 @@ variable "tags" {
 }
 
 variable "subnet_newbits" {
-  description = "Number of new bits to add to VPC CIDR to generate subnets (e.g., 8 means /24 from /16)"
+  description = "Number of additional mask bits used to generate subnets from the VPC CIDR"
   type        = number
   default     = 8
 }

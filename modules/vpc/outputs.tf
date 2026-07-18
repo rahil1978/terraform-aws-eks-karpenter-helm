@@ -1,4 +1,4 @@
-# Output Block
+# VPC outputs for use by consuming modules or root configuration
 output "vpc_id" {
   value       = aws_vpc.main.id
   description = "The ID of the created VPC"
@@ -16,5 +16,5 @@ output "private_subnet_ids" {
 
 output "public_subnet_map" {
   value       = { for az, subnet in aws_subnet.public : az => subnet.id }
-  description = "Map of AZ to Public Subnet ID"
+  description = "Map of availability zone to public subnet ID"
 }

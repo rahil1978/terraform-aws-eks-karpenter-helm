@@ -1,4 +1,4 @@
-# Output Block
+# Output values exported for consuming configurations
 output "vpc_id" {
   value       = module.vpc.vpc_id
   description = "The ID of the created VPC"
