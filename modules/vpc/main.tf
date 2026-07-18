@@ -3,7 +3,7 @@ resource "aws_vpc" "main" {
   cidr_block           = var.vpc_cidr
   enable_dns_hostnames = true
   enable_dns_support   = true
-  tags = merge(var.tags, { Name = "${var.environment_name}-vpc" })
+  tags = merge(var.tags, { Name = "${local.customer_prefix}-vpc" })
   lifecycle {
     prevent_destroy = false #should be true
   }
@@ -12,7 +12,7 @@ resource "aws_vpc" "main" {
 # Resource-2: Internet Gateway
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id
-  tags = merge(var.tags, { Name = "${var.environment_name}-igw" })
+  tags = merge(var.tags, { Name = "${local.customer_prefix}-igw" })
 }
 
 # Resource-3: Public Subnets
@@ -24,7 +24,7 @@ resource "aws_subnet" "public" {
   map_public_ip_on_launch = true
 
   tags = merge(var.tags, {
-    Name = "${var.environment_name}-public-${each.key}"
+    Name = "${local.customer_prefix}-public-${each.key}"
   })
 }
 
@@ -35,20 +35,20 @@ resource "aws_subnet" "private" {
   cidr_block        = each.value
   availability_zone = each.key
   tags = merge(var.tags, {
-    Name = "${var.environment_name}-private-${each.key}"
+    Name = "${local.customer_prefix}-private-${each.key}"
   })
 }
 
 # Resource-5: Elastic IP for NAT Gateway
 resource "aws_eip" "natip" {
-  tags = merge(var.tags, { Name = "${var.environment_name}-nat-eip" })
+  tags = merge(var.tags, { Name = "${local.customer_prefix}-nat-eip" })
 }
 
 # Resource-6: NAT Gateway
 resource "aws_nat_gateway" "nat" {
   allocation_id = aws_eip.natip.id
   subnet_id     = values(aws_subnet.public)[0].id
-  tags = merge(var.tags, { Name = "${var.environment_name}-nat" })
+  tags = merge(var.tags, { Name = "${local.customer_prefix}-nat" })
   depends_on = [aws_internet_gateway.igw]
 }
 
@@ -59,7 +59,7 @@ resource "aws_route_table" "public_rt" {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.igw.id
   }
-  tags = merge(var.tags, { Name = "${var.environment_name}-public-rt" })
+  tags = merge(var.tags, { Name = "${local.customer_prefix}-public-rt" })
 }
 
 # Resource-8: Public Route Table Associate to Public Subnet
@@ -76,7 +76,7 @@ resource "aws_route_table" "private_rt" {
     cidr_block     = "0.0.0.0/0"
     nat_gateway_id = aws_nat_gateway.nat.id
   }
-  tags = merge(var.tags, { Name = "${var.environment_name}-private-rt" })
+  tags = merge(var.tags, { Name = "${local.customer_prefix}-private-rt" })
 }
 
 # Resource-10: Private Route Table Association to Private Subnet

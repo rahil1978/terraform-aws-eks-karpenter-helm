@@ -1,4 +1,4 @@
-#terraform-aws-eks-karpenter-helm
+##terraform-aws-eks-karpenter-helm
 This repository provides a modular Terraform for deploying AWS infrastructure, EKS clusters, Karpenter autoscaling, and Helm‑based addons. It is structured to support multiple environments and reusable modules while keeping each stack isolated and easy to manage.
 
 The modules/ directory contains reusable components such as VPC. The projects/ directory contains deployable stacks for different parts of the infrastructure. Each stack includes its own backend configuration and lock file to ensure consistent provider versions and safe remote state usage.

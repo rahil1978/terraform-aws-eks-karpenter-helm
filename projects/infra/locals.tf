@@ -1,3 +1,3 @@
 locals {
-  combined_name = "${var.customer}-${var.environment_name}"
+  customer_prefix = "${var.customer}${var.environment_name}"
 }
