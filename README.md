@@ -1,66 +1,8 @@
-terraform-aws-eks-karpenter-helm/
-│
-├── projects/
-│   ├── infrastructure/                # Project 1: Customer AWS infra (VPC, EC2, RDS, ECS, SNS, SSM, etc.)
-│   │   ├── vpc/
-│   │   ├── ec2/
-│   │   ├── rds/
-│   │   ├── ecs/
-│   │   ├── sns/
-│   │   ├── ssm/
-│   │   └── main.tf
-│   │
-│   ├── eks-cluster/                   # Project 2: Dedicated EKS cluster creation
-│   │   ├── cluster/
-│   │   ├── karpenter/
-│   │   ├── helm-addons/
-│   │   └── main.tf
-│   │
-│   ├── observability/                 # Project 3: Monitoring & logging
-│   │   ├── prometheus/
-│   │   ├── grafana/
-│   │   ├── cloudwatch/
-│   │   ├── opensearch/
-│   │   └── main.tf
-│   │
-│   └── security/                      # Optional future project (IAM, GuardDuty, WAF, KMS)
-│       ├── iam/
-│       ├── guardduty/
-│       ├── kms/
-│       └── main.tf
-│
-├── modules/                           # Shared reusable modules across all projects
-│   ├── vpc/
-│   ├── eks/
-│   ├── karpenter/
-│   ├── helm/
-│   ├── rds/
-│   ├── ecs/
-│   ├── sns/
-│   ├── ssm/
-│   └── observability/
-│
-├── environments/                      # Dev/UAT/Prod configurations
-│   ├── dev/
-│   │   ├── backend.tf
-│   │   ├── providers.tf
-│   │   └── terraform.tfvars
-│   ├── uat/
-│   └── prod/
-│
-├── shared/                            # Shared infra primitives
-│   ├── remote-state/                  # S3 + DynamoDB
-│   ├── providers/                     # Common provider configs
-│   ├── policies/                      # OPA, Sentinel, security policies
-│   └── ci-cd/                         # GitHub Actions / pipelines
-│
-├── docs/                              # Architecture diagrams, READMEs
-│   ├── architecture/
-│   ├── networking/
-│   ├── eks/
-│   └── observability/
-│
-└── scripts/                           # Helper scripts (bash, python)
-    ├── plan.sh
-    ├── apply.sh
-    └── destroy.sh
+#terraform-aws-eks-karpenter-helm
+This repository provides a modular Terraform for deploying AWS infrastructure, EKS clusters, Karpenter autoscaling, and Helm‑based addons. It is structured to support multiple environments and reusable modules while keeping each stack isolated and easy to manage.
+
+The modules/ directory contains reusable components such as VPC. The projects/ directory contains deployable stacks for different parts of the infrastructure. Each stack includes its own backend configuration and lock file to ensure consistent provider versions and safe remote state usage.
+
+Remote state is stored in S3 for state locking. Each environment uses its own state key path to ensure safe promotion and rollback. CI pipelines run formatting, validation, security checks, and plan generation before applying changes.
+
+Modules are designed for clarity, reusability, and long‑term maintainability. The structure supports future growth and safe refactoring as new services or modules are added. This repository serves as a foundation for building reliable and repeatable cloud infrastructure across multiple environments.
