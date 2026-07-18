@@ -11,6 +11,6 @@ subnet_newbits = 8
 # Tags 
 tags = {
   Terraform   = "true"
-  Project     = "FolioStore-microservices"
+  Project     = "FolioStore-microservices - Terraform"
   Owner       = "Raheel Aslam"
 }
