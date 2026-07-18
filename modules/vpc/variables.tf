@@ -1,3 +1,9 @@
+// Customer specific inform
+variable "customer" {
+  description = "Customer name used in resource names and tags"
+  type        = string
+  default     = "folio"
+}
 
 variable "environment_name" {
   description = "Environment name used in resource names and tags"
@@ -25,16 +31,3 @@ variable "subnet_newbits" {
   default     = 8
 }
 
-// Customer specific inform
-variable "customer" {
-  description = "Customer name used in resource names and tags"
-  type        = string
-  default     = "folio"
-}
-
-
-variable "customer_prefix" {
-  description = "Customerprefix used in resource names and tags"
-  type        = string
-  default     = "foliodev"
-}
