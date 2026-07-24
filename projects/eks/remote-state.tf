@@ -5,7 +5,7 @@ data "terraform_remote_state" "vpc" {
   backend = "s3"
 
   config = {
-    bucket = "tfstate-dev-ap-southeast-2-iv3jwo"     # S3 bucket storing the VPC remote state
+    bucket = "foliodev-ap-southeast-2-tfstate-remote-backend"     # S3 bucket storing the VPC remote state
     key    = "vpc/dev/terraform.tfstate"              # Remote state file path for the VPC module
     region = var.aws_region                             # Region where the backend resources are located
   }

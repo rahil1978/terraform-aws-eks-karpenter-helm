@@ -12,14 +12,9 @@ terraform {
     } 
   }
   
-  # Remote backend configuration
-  backend "s3" {
-      bucket = "tfstate-dev-ap-southeast-2-iv3jwo"
-      key = "vpc/dev/terraform.tfstate"
-      region = "ap-southeast-2"
-      encrypt = true
-      use_lockfile = true
- }
+  # Remote state backend configuration using S3
+  backend "s3" {}  
+
 }
 
 # AWS provider configuration
