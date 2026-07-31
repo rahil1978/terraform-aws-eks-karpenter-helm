@@ -12,9 +12,9 @@ terraform {
 
   # Remote state backend configuration using S3
   backend "s3" {
-    bucket         = "foliodev-ap-southeast-2-tfstate-remote-backend"         
+    bucket         = "foliodev-us-east-1-tfstate-remote-backend"         
     key            = "eks/dev/terraform.tfstate"            
-    region         = "ap-southeast-2"                            
+    region         = "us-east-1"                            
     encrypt        = true                                   
     use_lockfile   = true      
   }
