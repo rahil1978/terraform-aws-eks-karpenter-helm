@@ -1,3 +1,10 @@
+// Customer-specific variables and defaults
+variable "customer" {
+  description = "Customer name used in resource names and tags"
+  type        = string
+  default     = "folio"
+}
+
 # --------------------------------------------------------
 # AWS Region (used in provider block)
 # --------------------------------------------------------
@@ -22,17 +29,6 @@ variable "environment_name" {
   description = "Environment name used in resource names and tags"
   type        = string
   default     = "dev"
-}
-
-# --------------------------------------------------------
-# EKS Cluster Configuration
-# --------------------------------------------------------
-
-# Name of the EKS cluster (used in names, tags, and references)
-variable "cluster_name" {
-  description = "Target cluster name"
-  type        = string
-  default     = "eks"
 }
 
 # Kubernetes version for the EKS control plane
@@ -91,7 +87,7 @@ variable "tags" {
 variable "node_instance_types" {
   description = "List of EC2 instance types for the node group"
   type        = list(string)
-  default     = ["t3.medium"]
+  default     = ["t3.small"]
 }
 
 # Capacity type for node group (ON_DEMAND or SPOT)

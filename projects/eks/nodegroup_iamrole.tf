@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------------
 resource "aws_iam_role" "eks_nodegroup_role" {
   # Node group IAM role name using the shared prefix
-  name = "${local.name}-eks-nodegroup-role"
+  name = "${local.customer_prefix_business_division}-eks-nodegroup-role"
 
   # Trust policy allowing EC2 instances to assume this role
   assume_role_policy = jsonencode({

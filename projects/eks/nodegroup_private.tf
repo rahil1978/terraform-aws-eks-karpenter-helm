@@ -5,7 +5,7 @@ resource "aws_eks_node_group" "private_nodes" {
   cluster_name = aws_eks_cluster.main.name
 
   # Unique name assigned to this private node group within the cluster
-  node_group_name = "${local.name}-private-ng"
+  node_group_name = "${local.customer_prefix_business_division}-private-ng"
 
   # IAM role assumed by worker nodes to access AWS and EKS resources
   node_role_arn = aws_iam_role.eks_nodegroup_role.arn
@@ -56,7 +56,7 @@ resource "aws_eks_node_group" "private_nodes" {
   # Tags applied to the node group and its EC2 instances for inventory and cost tracking
   tags = merge(var.tags, {
     # Standard EC2 name tag
-    Name = "${local.name}-private-ng"
+    Name = "${local.customer_prefix_business_division}-private-ng"
 
     # Environment label such as dev or prod
     Environment = var.environment_name

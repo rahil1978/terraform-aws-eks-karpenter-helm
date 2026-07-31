@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------------
 resource "aws_iam_role" "eks_cluster" {
   # IAM role name built from team and environment metadata
-  name = "${local.name}-eks-cluster-role"
+  name = "${local.customer_prefix_business_division}-eks-cluster-role"
 
   # Trust policy allowing EKS to assume this role
   assume_role_policy = jsonencode({

@@ -2,9 +2,6 @@
 aws_region = "us-east-1"
 environment_name = "dev"
 business_division = "sales"
-
-# EKS Cluster 
-cluster_name = "eks"
 cluster_service_ipv4_cidr = "172.20.0.0/16"
 cluster_version = "1.34"
 
