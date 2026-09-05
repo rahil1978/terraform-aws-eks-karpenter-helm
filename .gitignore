@@ -3,12 +3,14 @@ PLAN.md
 
 #Temp folder should not be committed
 #projects/eks/
+projects/dataplane/to-add/
 shared/
 scripts/
 pipeline/
 environments/
 docs/
 pipelines/
+
 
 # Terraform state and config files
 *.tfstate
